@@ -1,0 +1,58 @@
+{% extends "gna/tabulate/layout.html" %}
+{% load gna_tags %}
+{% block content %}
+<div id="content-main"> 
+
+    <div class="module content-main">
+        <form action="{{ url }}" method="post"> 
+            {% csrf_token %}  
+            <p>
+                日期：<input class="vDateField" name="request_date" size="15" type="text" value="{{ date_str }}"/>
+                <input type="submit" name="submit" value="查找" />
+                {% if warning %}<font color="#FF000">{{ warning.text }}</font>{% endif %}
+            </p>
+        </form>
+    </div>
+
+    <div class="module content-main">
+        <table>
+            <caption>{{ result.title }}</caption>
+            <tr>
+            {% for ele in result.head %}
+                <th>{{ ele }}</th>    
+            {% endfor %}
+            </tr>
+            {% for row in result.body %}
+            <tr>
+                {% for ele in row %}
+                <td>
+                    <font {% if ele.is_red %}color="#FF000"{% endif %}>{% if ele.value %}{{ ele.value }}{% endif %}</font>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>   
+    
+</div>
+
+<script type="text/javascript" src="/gna/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+{% endblock %}
+
+
+
+
+
+
+
+

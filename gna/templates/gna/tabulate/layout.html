@@ -1,0 +1,58 @@
+{% extends "gna/base.html" %}
+{% load gna_tags %}
+{% block title %}tabulate{% endblock %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'gna/index' %}">首页</a>>总览
+</div>
+{% endblock %}
+{% block sidebar %}
+<div id="content-sidebar">
+    <div>
+        <h2>日报数据</h2>
+        <ul>
+            <li {% if selected.daily_date %}class="selected"{% endif %}><a href="{% url 'tabulate/daily_date' %}">每日汇总</a></li>
+            <li {% if selected.daily_date_platform %}class="selected"{% endif %}><a href="{% url 'tabulate/daily_date_platform' %}">每日各平台汇总</a></li>
+            <li {% if selected.daily_platform_date %}class="selected"{% endif %}><a href="{% url 'tabulate/daily_platform_date' %}">各平台每日汇总</a></li>
+            <li {% if selected.daily_date_channel %}class="selected"{% endif %}><a href="{% url 'tabulate/daily_date_channel' %}">每日各渠道汇总</a></li>
+            <li {% if selected.daily_channel_date %}class="selected"{% endif %}><a href="{% url 'tabulate/daily_channel_date' %}">各渠道每日汇总</a></li>
+        </ul>
+    </div>
+    <div>
+        <h2>行为数据</h2>
+        <ul>
+            <li {% if selected.behave_new_user_level %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_new_user_level' %}">当日创角等级分布</a></li>
+            <li {% if selected.behave_payment_level %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_payment_level' %}">充值档次数</a></li>
+            <li {% if selected.behave_zel_inc %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_zel_inc' %}">金币产出</a></li>
+            <li {% if selected.behave_zel_dec %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_zel_dec' %}">金币消耗</a></li>
+            <li {% if selected.behave_dia_inc %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_dia_inc' %}">钻石产出</a></li>
+            <li {% if selected.behave_dia_dec %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_dia_dec' %}">钻石消耗</a></li>
+            <li {% if selected.behave_karma_inc %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_karma_inc' %}">魂产出</a></li>
+            <li {% if selected.behave_karma_dec %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_karma_dec' %}">魂消耗</a></li>
+            <li {% if selected.behave_unit_evo %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_unit_evo' %}">卡牌进化</a></li>
+            <li {% if selected.behave_unit_mix %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_unit_mix' %}">卡牌强化</a></li>
+            <li {% if selected.behave_unit_sell %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_unit_sell' %}">卡牌出售</a></li>
+            <li {% if selected.behave_facility_lvup %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_facility_lvup' %}">建筑升级</a></li>
+            <li {% if selected.behave_location_lvup %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_location_lvup' %}">资源升级</a></li>
+            <li {% if selected.behave_arena_challenge %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_arena_challenge' %}">竞技场挑战</a></li>
+            <li {% if selected.behave_dungeon_sliver_key %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_dungeon_sliver_key' %}">帝都兰德尔-银钥匙</a></li>
+            <li {% if selected.behave_dungeon_gold_key %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_dungeon_gold_key' %}">帝都兰德尔-金钥匙</a></li>
+            <li {% if selected.behave_bm_refresh %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_bm_refresh' %}">黑市刷新</a></li>
+            <li {% if selected.behave_bm_buy %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_bm_buy' %}">黑市购买</a></li>
+            <li {% if selected.behave_bm_goods %}class="selected"{% endif %}><a href="{% url 'tabulate/behave_bm_goods' %}">黑市物品购买情况</a></li>
+        </ul>
+        <h2>监控数据</h2>
+        <ul>
+            <li {% if selected.monitor_top_vip %}class="selected"{% endif %}><a href="{% url 'tabulate/monitor_top_vip' %}">当日充值排行榜</a></li>
+            <li {% if selected.monitor_top_dia_product %}class="selected"{% endif %}><a href="{% url 'tabulate/monitor_top_dia_product' %}">钻石产出排行榜</a></li>
+            <li {% if selected.monitor_top_dia_consume %}class="selected"{% endif %}><a href="{% url 'tabulate/monitor_top_dia_consume' %}">钻石消耗排行榜</a></li>
+            <li {% if selected.monitor_top_zel_product %}class="selected"{% endif %}><a href="{% url 'tabulate/monitor_top_zel_product' %}">金币产出排行榜</a></li>
+            <li {% if selected.monitor_top_zel_consume %}class="selected"{% endif %}><a href="{% url 'tabulate/monitor_top_zel_consume' %}">金币消耗排行榜</a></li>
+            <li {% if selected.monitor_top_karma_product %}class="selected"{% endif %}><a href="{% url 'tabulate/monitor_top_karma_product' %}">魂产出排行榜</a></li>
+            <li {% if selected.monitor_top_karma_consume %}class="selected"{% endif %}><a href="{% url 'tabulate/monitor_top_karma_consume' %}">魂消耗排行榜</a></li>
+            <li {% if selected.monitor_top_vip7 %}class="selected"{% endif %}><a href="{% url 'tabulate/monitor_top_vip7' %}">充值用户流失预警排行榜</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+{% block content_main %}{% endblock %}

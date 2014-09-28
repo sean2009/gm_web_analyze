@@ -1,0 +1,26 @@
+{% extends "gna/base.html" %}
+{% load gna_tags %}
+{% block title %}index{% endblock %}
+{% block content %}
+<div id="content-main">
+    <div class="module">
+        <table>
+            <caption>GNA-分区数据</caption>
+            <tr>
+                <th scope="row"><a href="{% url 'gna/list' %}">普通统计</a></th>
+            </tr>
+            <tr>
+                <th scope="row"><a href="{% url 'gna/retention/list' %}">留存率统计</a></th>
+            </tr>
+        </table>
+    </div>
+    <div class="module">
+        <table>
+            <caption>数据统计</caption>
+            <tr>
+                <th scope="row"><a href="{% url 'tabulate/home' %}">日报数据统计</a></th>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

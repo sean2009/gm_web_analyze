@@ -1,0 +1,39 @@
+{% extends "gna/base.html" %}
+{% load gna_tags %}
+{% block title %}daily_detail{% endblock %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'gna/index' %}">首页</a>><a href="{% url 'gna/list' %}">总览</a>>详细
+</div>
+{% endblock %}
+{% block content %}
+<div>
+    <input type="button" value="按月显示" onclick="window.location='{% url 'gna/month/detail' db.db %}';" />
+</div>
+<div>
+    {% include 'gna/partial/paginator.html' %}
+</div>   
+<div id="content_main">
+    
+    <div class="module">    
+        <table>
+            <caption><a href="{% url 'gna/daily/detail' db.db %}">{{ db.title }}</a></caption>
+            <tr>
+                {% for ele in db.head %}    
+                    <th scope="col">{{ ele }}</th>       
+                {% endfor %}
+            </tr>
+            {% for row in db.body %}
+            <tr>
+                {% for ele in row %}
+                <td>{% if ele %}{{ ele }}{% endif %}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>      
+    </div>
+</div>
+<div>
+    {% include 'gna/partial/paginator.html' %}
+</div>
+{% endblock %}

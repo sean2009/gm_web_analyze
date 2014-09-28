@@ -1,0 +1,4 @@
+export DJANGO_SETTINGS_MODULE='settings.gna_settings'
+python manage.py migrate
+python manage.py migrate --database='bf1'
+python manage.py init_cache

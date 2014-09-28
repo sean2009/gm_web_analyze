@@ -1,0 +1,68 @@
+{% load admin_static %}
+{% load gna_tags %}
+{% load firstof from future %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
+<link rel="stylesheet" type="text/css" href="/static/admin/css/global.css"/>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/widgets.css"/>
+{% block extrastyle %}{% endblock %}
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% static "admin/css/ie.css" %}{% endblock %}" /><![endif]-->
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
+<script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
+<script type="text/javascript">window.__admin_utc_offset__ = "{% filter escapejs %}{% now "Z" %}{% endfilter %}";</script>
+{% block extrahead %}{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+{% load i18n %}
+
+<style>
+{% include 'gna/default.css' %}
+</style>
+<title>{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}</title>
+<body>
+
+<!-- Container -->
+<div id="container">
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name">
+                <a href="{% url 'gna/index' %}">数据统计</a>
+            </h1>
+        </div>
+        <div id="user-tools">
+            {% block welcome-msg %}
+                {% trans 'Welcome,' %}
+                <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+            {% endblock %}
+            {% block userlinks %}
+                <!-- {% if user.has_usable_password %}
+                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+                {% endif %} -->
+                <a href="{% url 'gna/logout' %}?next=/gna/index/">{% trans 'Log out' %}</a>
+            {% endblock %}
+        </div>
+    </div>
+    <!-- END Header -->
+    {% block breadcrumbs %}
+    {% endblock %}
+
+    <!-- Content -->
+    <div id="content">
+        {% block sidebar %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}      
+    </div>
+    <!-- END Content -->
+
+    {% block footer %}<div id="footer"></div>{% endblock %}
+</div>
+<!-- END Container -->
+
+</body>
+</html>

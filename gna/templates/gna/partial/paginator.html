@@ -1,0 +1,30 @@
+页面：
+{% if pager.head_page %}
+    {% for page in pager.head_page %}
+        {% if page == pager.cur_page %}
+            {{ page }}
+        {% else %}
+            <a href="{{ pager.url }}{{ page }}">{{ page }}</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% if pager.mid_page %}
+...
+    {% for page in pager.mid_page %}
+        {% if page == pager.cur_page %}
+            {{ page }}
+        {% else %}
+            <a href="{{ pager.url }}{{ page }}">{{ page }}</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% if pager.tail_page %}
+...
+    {% for page in pager.tail_page %}
+        {% if page == pager.cur_page %}
+            {{ page }}
+        {% else %}
+            <a href="{{ pager.url }}{{ page }}">{{ page }}</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}
